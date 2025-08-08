@@ -33,15 +33,15 @@ async def receive_alert(alert: Alert, db: Session = Depends(get_db)):
             status_code=500, detail=f"Failed to extract resolution: {e}"
         )
 
-    db_alert = AlertModel(
-        uuid=alert.uuid,
-        video=alert.video,
-        timestamp=alert.timestamp,
-        store=alert.store,
-        resolution=resolution,
-    )
-
     try:
+        db_alert = AlertModel(
+            uuid=alert.uuid,
+            video=alert.video,
+            timestamp=alert.timestamp,
+            store=alert.store,
+            resolution=resolution,
+        )
+
         db.add(db_alert)
         db.commit()
         db.refresh(db_alert)
@@ -50,6 +50,8 @@ async def receive_alert(alert: Alert, db: Session = Depends(get_db)):
         raise HTTPException(
             status_code=400, detail="Alert with this UUID already exists"
         )
+    finally:
+        db.close()
 
     date_str = datetime.fromtimestamp(alert.timestamp).strftime("%Y-%m-%d %H:%M:%S")
 
