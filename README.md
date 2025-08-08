@@ -19,20 +19,14 @@ The project is split into three services:
 
 ### Running the Application
 
-1. **Clone and navigate to the project**
-   ```bash
-   git clone <repository-url>
-   cd alert-test
-   ```
-
-2. **Start everything up**
+1. **Start everything up**
    ```bash
    docker-compose up --build
    ```
    First time you may have a database connection error because it didn't start
    Don't hesite to docker-compose up --build a second time, it will work
 
-3. **Check that it's working**
+2. **Check that it's working**
    - Alert Service API: http://localhost:8000
    - Nginx Video Server: http://localhost:8080
    - PostgreSQL: localhost:5432
