@@ -1,0 +1,33 @@
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+  postgres:
+    build: ./postgres
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U veesion"]
+      interval: 1s
+      retries: 4
+      timeout: 5s
+  alert_service:
+    build: ./fastapi
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - nginx
+    environment:
+      DATABASE_URL: postgresql://veesion:secret@postgres:5432
+      VIDEO_SERVER: http://nginx
+  alert_tests:
+    build:
+      context: ./fastapi
+    environment:
+      DATABASE_URL: sqlite:///./test.db
+      VIDEO_SERVER: "http://nginx"
+    command: ["pytest"]
+    profiles: ["test"]
+    working_dir: /app
