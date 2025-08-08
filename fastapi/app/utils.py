@@ -27,6 +27,7 @@ async def fetch_video(video_path: str) -> bytes:
         raise HTTPException(status_code=404, detail="Video not found on server")
 
 
+# We use OpenCV to extract the resolution of the video
 def extract_resolution(video_bytes: bytes) -> str:
     tmp_file = "temp_video.avi"
     with open(tmp_file, "wb") as f:

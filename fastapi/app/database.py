@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 
 
 # Get DB URL from env or fallback
+# Of course, in production, we would use a more secure way to store the credentials
 DB_URL = os.getenv("DATABASE_URL", "postgresql://veesion:secret@localhost:5432")
 
 # Create engine

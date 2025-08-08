@@ -45,7 +45,7 @@ def test_decode_failure_500(client):
     assert r.status_code == 500
 
 
-def test_duplicate_uid_policy(client):
+def test_duplicate_uuid_policy(client):
     with (
         patch("app.main.fetch_video", return_value=b"x"),
         patch("app.main.extract_resolution", return_value="640x480"),
