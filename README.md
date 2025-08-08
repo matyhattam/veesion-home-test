@@ -29,6 +29,8 @@ The project is split into three services:
    ```bash
    docker-compose up --build
    ```
+   First time you may have a database connection error because it didn't start
+   Don't hesite to docker-compose up --build a second time, it will work
 
 3. **Check that it's working**
    - Alert Service API: http://localhost:8000
