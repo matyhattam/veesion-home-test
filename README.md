@@ -148,7 +148,6 @@ alert-test/
 ### Performance Optimizations
 
 1. **Database Scaling**
-   - Implement database connection pooling (e.g., using `asyncpg` for async connections)
    - Add database read replicas for read-heavy workloads
    - Implement proper database indexing on frequently queried fields
    - Consider using Redis for caching frequently accessed data
@@ -160,6 +159,7 @@ alert-test/
    - Add more support for video formats (MP4, MOV, etc.)
 
 3. **API Performance**
+   - Implement backgroundtasks form fastapi to handle long jobs than can run in the background in addition to celery
    - Implement request rate limiting
    - Add API response caching with Redis
    - Consider using FastAPI's background tasks for non-blocking operations
