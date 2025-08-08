@@ -3,7 +3,7 @@
 A simple microservices setup for processing video alerts. The system extracts video resolution information and stores alert data in a database. It simulates notifications by printing in the terminal.
 Built with FastAPI, PostgreSQL, and Nginx, Docker.
 
-## 🏗️ Architecture
+## Architecture
 
 The project is split into three services:
 
@@ -11,7 +11,7 @@ The project is split into three services:
 - **PostgreSQL**: Stores the alert data
 - **Nginx**: Serves video files
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -35,7 +35,7 @@ The project is split into three services:
    - Nginx Video Server: http://localhost:8080
    - PostgreSQL: localhost:5432
 
-## 📋 API Documentation
+## API Documentation
 
 ### Endpoints
 
@@ -56,7 +56,6 @@ Processes an alert with video information and extracts resolution.
 Validation:
 - The `video` field is validated in the schema using a regex-based type. It must end with one of: `.mp4`, `.avi`, `.mov`, `.mkv`, `.webm` (case-insensitive).
 
-**Response:**
 ```json
 {
   "status": "success",
@@ -64,18 +63,7 @@ Validation:
 }
 ```
 
-#### GET `/`
-
-Health check endpoint.
-
-**Response:**
-```json
-{
-  "Hello": "World"
-}
-```
-
-## 🗄️ Database Schema
+## Database Schema
 
 The `alerts` table contains the following fields:
 
@@ -87,7 +75,7 @@ The `alerts` table contains the following fields:
 - `resolution`: Extracted video resolution (e.g., "1920x1080")
 - `received_at`: Timestamp when the alert was received
 
-## 🧪 Testing
+## Testing
 
 Run the test suite using Docker Compose:
 
@@ -104,7 +92,7 @@ The test suite covers:
 - Duplicate UUID handling
 We could of course add a lot more tests in a production scenatrio but for the sake of time and simplicity, it is not exhaustive.
 
-## 🔧 Development
+## Development
 
 ### Project Structure
 
@@ -134,7 +122,7 @@ alert-test/
 - `DATABASE_URL`: PostgreSQL connection string
 - `VIDEO_SERVER`: Nginx server URL for video files
 
-## 🔍 Key Features
+## Key Features
 
 - **Video Resolution Extraction**: Uses OpenCV to extract video resolution from uploaded files
 - **Schema-level Input Validation**: `video` uses a regex-validated string type to allow only `.mp4`, `.avi`, `.mov`, `.mkv`, `.webm` (case-insensitive)
@@ -143,7 +131,7 @@ alert-test/
 - **Microservices Architecture**: Separated concerns with dedicated services for different functions
 - **Docker Containerization**: Easy deployment and development setup
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Backend**: FastAPI, SQLAlchemy, Pydantic
 - **Database**: PostgreSQL
@@ -153,14 +141,14 @@ alert-test/
 - **Containerization**: Docker, Docker Compose
 - **Testing**: pytest
 
-## 📝 Notes
+## Notes
 
 - The application creates database tables automatically on startup (for simplicity)
 - Video files are served through Nginx for efficient delivery
 - Temporary video files are created and cleaned up during resolution extraction
 - The system is designed for small-scale deployments; for production, consider using proper migration tools like Alembic
 
-## 🚀 Scaling Improvements
+## Scaling Improvements
 
 ### Performance Optimizations
 
@@ -174,27 +162,22 @@ alert-test/
    - Implement async video processing with background tasks (Celery/RQ)
    - Add video processing queue to handle high load
    - Implement video format validation before processing
-   - Add support for multiple video formats (MP4, MOV, etc.)
-   - Consider using GPU acceleration for video processing
+   - Add more support for video formats (MP4, MOV, etc.)
 
 3. **API Performance**
    - Implement request rate limiting
    - Add API response caching with Redis
-   - Implement pagination for large result sets
-   - Add request/response compression
    - Consider using FastAPI's background tasks for non-blocking operations
 
 4. **Infrastructure Scaling**
-   - Implement horizontal scaling with load balancers (HAProxy/Nginx)
-   - Use container orchestration (Kubernetes/Docker Swarm)
+   - Implement horizontal scaling with load balancers
+   - Use container orchestration (Kubernetes)
    - Implement auto-scaling based on CPU/memory usage
-   - Add health checks and circuit breakers
    - Consider using CDN for video file delivery
 
 5. **Monitoring and Observability**
    - Add comprehensive logging (structured logging with JSON)
    - Implement metrics collection (Prometheus/Grafana)
-   - Add distributed tracing (Jaeger/Zipkin)
    - Implement alerting for system health
    - Add performance monitoring and profiling
 
@@ -209,26 +192,15 @@ alert-test/
    - Implement proper database migrations (Alembic)
    - Add data archiving strategy for old alerts
    - Implement data backup and recovery procedures
-   - Consider using time-series databases for historical data
-   - Add data retention policies
 
 8. **Video Storage Optimization**
    - Implement video file compression
-   - Add support for video streaming (HLS/DASH)
    - Consider using object storage (S3/GCS) for video files
    - Implement video thumbnail generation
-   - Add video metadata extraction and storage
 
 9. **Error Handling and Resilience**
    - Implement retry mechanisms with exponential backoff
-   - Add circuit breakers for external service calls
-   - Implement graceful degradation
-   - Add dead letter queues for failed processing
-   - Consider using event sourcing for audit trails
 
 10. **Development and Deployment**
     - Implement CI/CD pipelines
     - Add automated testing with different environments
-    - Implement blue-green deployments
-    - Add feature flags for gradual rollouts
-    - Consider using infrastructure as code (Terraform/CloudFormation)
