@@ -56,13 +56,6 @@ Processes an alert with video information and extracts resolution.
 Validation:
 - The `video` field is validated in the schema using a regex-based type. It must end with one of: `.mp4`, `.avi`, `.mov`, `.mkv`, `.webm` (case-insensitive).
 
-```json
-{
-  "status": "success",
-  "resolution": "1920x1080"
-}
-```
-
 ## Database Schema
 
 The `alerts` table contains the following fields:
