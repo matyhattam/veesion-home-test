@@ -15,7 +15,7 @@ The project is split into three services:
 
 ### Prerequisites
 
-- Docker and Docker Compose installed
+- Docker and Docker Compose installed to build and run
 
 ### Running the Application
 
